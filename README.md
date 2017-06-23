@@ -47,8 +47,8 @@ autocmd QuickFixCmdPost [^l]* cwindow
 Press `Enter` over an error to jump to it; navigate to the next and previous errors using `:cnext` and `:cprevious`, respectively.
 I recommend the following convenience mappings:
 ```vim
-nnoremap ]c :cnext<CR>
-nnoremap [c :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprevious<CR>
 ```
 See `:help quickfix` to learn more about working with quickfix windows.
 
