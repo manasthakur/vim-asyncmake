@@ -10,6 +10,4 @@ endif
 let g:loaded_asyncmake = 1
 
 " Define a 'AsyncMake' command
-command! -nargs=* -complete=file AsyncMake call asyncmake#AsyncMake(<q-args>)
-
-" vim: tabstop=2
+command! -bang -nargs=* -complete=file AsyncMake call asyncmake#AsyncMake(<q-args>, '<bang>')
