@@ -15,7 +15,7 @@ It can be used in two ways -- (a) on-demand; and (b) behind-the-scenes.
 
 ### On-Demand builds
 
-<img src="./images/asyncmake1.gif" width="640px">
+<img src="./images/asyncmake1.gif" width="80%">
 
 AsyncMake provides a simple command (called, guess what, `AsyncMake`) to run shell commands asynchronously, which can be invoked as follows:
 ```vim
@@ -55,7 +55,7 @@ If your Vim version is below 8 (check using `:version`), the 'Make' part of Asyn
 
 ### Behind-the-scene builds (Vim 8+)
 
-<img src="./images/asyncmake2.gif" width="640px">
+<img src="./images/asyncmake2.gif" width="80%">
 
 AsyncMake can also be tweaked to run silently.
 Just append a bang (`!`): `AsyncMake!`.
