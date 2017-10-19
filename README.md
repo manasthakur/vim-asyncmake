@@ -76,8 +76,8 @@ You can use it as follows:
 ```vim
 set statusline+=%#WarningMsg#%{exists('g:loaded_asyncmake')?asyncmake#statusline():''}%*
 ```
-This function will notify you with the number of errors on your statusline.
-(Note that you need `:set laststatus=2` to always have the statusline visible.)
+This function will notify you with the number of errors on your statusline (noticed the red-color number within square brackets when there were errors in the above gifs?).
+Note that you need `:set laststatus=2` to always have the statusline visible.
 
 ## Installation
 
