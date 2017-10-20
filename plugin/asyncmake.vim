@@ -1,6 +1,6 @@
 " Vim-AsyncMake
 " AUTHOR: Manas Thakur (manasthakur17@gmail.com)
-" VERSION: 2.0
+" VERSION: 2.1
 " LICENSE: MIT
 
 " Exit if asyncmake is already loaded

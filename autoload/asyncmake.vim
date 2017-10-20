@@ -1,12 +1,14 @@
 " Vim-AsyncMake
 " AUTHOR: Manas Thakur (manasthakur17@gmail.com)
-" VERSION: 2.0
+" VERSION: 2.1
 " LICENSE: MIT
 
 " Function to build (async for Vim 8+)
 function! asyncmake#AsyncMake(cmd, cmdbang) abort
 	if !empty(a:cmd)
 		let b:asyncmakeprg = a:cmd
+	else
+		let b:asyncmakeprg = "make"
 	endif
 	if v:version >= 800
 		" The async version (Vim 8+)
