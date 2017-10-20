@@ -43,6 +43,8 @@ If the compilation was successful, you will get a message `No errors!`.
 If the compilation failed with some errors, the errors are loaded into the quickfix list, which is opened automatically.
 The errors are formatted based on the `errorformat` option for the corresponding compiler. See `:help errorformats` to learn about defining it based on your tastes.
 
+The default value of `b:asyncmakeprg` is `make`, which essentially would use a Makefile (if one exists) in the current directory.
+
 Press `Enter` over an error to jump to it; navigate to the next and previous errors using `:cnext` and `:cprevious`, respectively.
 I recommend the following convenience mappings:
 ```vim
