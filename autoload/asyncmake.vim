@@ -7,7 +7,7 @@
 function! asyncmake#AsyncMake(cmd, cmdbang) abort
 	if !empty(a:cmd)
 		let b:asyncmakeprg = a:cmd
-	else if empty(b:asyncmakeprg)
+	elseif empty(b:asyncmakeprg)
 		let b:asyncmakeprg = "make"
 	endif
 	if v:version >= 800
