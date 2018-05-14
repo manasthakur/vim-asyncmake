@@ -30,7 +30,7 @@ endfunction
 function! ExitHandler1(job, exit_status) abort
 	execute "cgetfile " . s:asyncmake_outfile
 	echo ""
-	cwindow
+	belowright cwindow
 	if a:exit_status == 0
 		echo "No errors!"
 	endif
