@@ -13,11 +13,8 @@ function! asyncmake#AsyncMake(cmd, cmdbang) abort
 	if v:version >= 800
 		" The async version (Vim 8+)
 		let s:asyncmake_outfile = tempname()
-		" We do not want any displays in the silent mode
-		if a:cmdbang == ''
-			echo "Running: " . b:asyncmakeprg
-		endif
 		if a:cmdbang  == ''
+			echo "Running: " . b:asyncmakeprg
 			call job_start(b:asyncmakeprg, {'exit_cb': 'ExitHandlerNoisy', 'err_io': 'file', 'err_name': s:asyncmake_outfile})
 		else
 			call job_start(b:asyncmakeprg, {'exit_cb': 'ExitHandlerSilent', 'err_io': 'file', 'err_name': s:asyncmake_outfile})
@@ -49,7 +46,7 @@ function! ExitHandlerSilent(job, exit_status) abort
 	endif
 endfunction
 
-" Function to display the number of errors+warnings in the statusline
+" Function to display the number of errors in the statusline
 function! asyncmake#statusline() abort
 	let l:len_qflist = len(filter(getqflist(), 'v:val.valid'))
 	if l:len_qflist != 0
@@ -62,7 +59,7 @@ endfunction
 " Function to enable/disable build on write
 function! asyncmake#AsyncMakeMonitor(cmdbang) abort
 	if a:cmdbang == ''
-		autocmd asyncmake BufWritePost,BufEnter * AsyncMake!
+		autocmd asyncmake BufWritePost * AsyncMake!
 	else
 		autocmd! asyncmake
 	endif

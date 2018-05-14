@@ -65,7 +65,7 @@ Just append a bang (`!`): `AsyncMake!`.
 In this mode, AsyncMake will run the specified command (either as an argument or the value of `b:asyncmakeprg`) in the background.
 You can view the errors anytime by opening the quickfix window (`:copen`).
 
-You can also run a behind-the-scene build automatically when you save a buffer, or open a buffer.
+You can also run a behind-the-scene build automatically when you save a buffer.
 To enable automatic behind-the-scene builds use the command `:AsyncMakeMonitor`, and to disable them use `:AsyncMakeMonitor!`.
 
 To make behind-the-scene builds more useful, AsyncMake provides a statusline extension.
