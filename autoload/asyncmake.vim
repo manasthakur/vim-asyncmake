@@ -1,6 +1,6 @@
 " Vim-AsyncMake
 " AUTHOR: Manas Thakur (manasthakur17@gmail.com)
-" VERSION: 2.1
+" VERSION: 3.0
 " LICENSE: MIT
 
 " Function to build (async for Vim 8+)
@@ -12,12 +12,15 @@ function! asyncmake#AsyncMake(cmd, cmdbang) abort
 	endif
 	if v:version >= 800
 		" The async version (Vim 8+)
-		echo "Running: " . b:asyncmakeprg
 		let s:asyncmake_outfile = tempname()
+		" We do not want any displays in the silent mode
+		if a:cmdbang == ''
+			echo "Running: " . b:asyncmakeprg
+		endif
 		if a:cmdbang  == ''
-			call job_start(b:asyncmakeprg, {'exit_cb': 'ExitHandler1', 'err_io': 'file', 'err_name': s:asyncmake_outfile})
+			call job_start(b:asyncmakeprg, {'exit_cb': 'ExitHandlerNoisy', 'err_io': 'file', 'err_name': s:asyncmake_outfile})
 		else
-			call job_start(b:asyncmakeprg, {'exit_cb': 'ExitHandler2', 'err_io': 'file', 'err_name': s:asyncmake_outfile})
+			call job_start(b:asyncmakeprg, {'exit_cb': 'ExitHandlerSilent', 'err_io': 'file', 'err_name': s:asyncmake_outfile})
 		endif
 	else
 		" The synchronous version
@@ -27,7 +30,7 @@ function! asyncmake#AsyncMake(cmd, cmdbang) abort
 endfunction
 
 " Functions to handle job-exit (Vim 8+)
-function! ExitHandler1(job, exit_status) abort
+function! ExitHandlerNoisy(job, exit_status) abort
 	execute "cgetfile " . s:asyncmake_outfile
 	echo ""
 	belowright cwindow
@@ -36,7 +39,7 @@ function! ExitHandler1(job, exit_status) abort
 	endif
 endfunction
 
-function! ExitHandler2(job, exit_status) abort
+function! ExitHandlerSilent(job, exit_status) abort
 	execute "cgetfile " . s:asyncmake_outfile
 	if a:exit_status == 0
 		execute "cclose"
@@ -53,5 +56,14 @@ function! asyncmake#statusline() abort
 		return "[" . len_qflist . "]"
 	else
 		return ""
+	endif
+endfunction
+
+" Function to enable/disable build on write
+function! asyncmake#AsyncMakeMonitor(cmdbang) abort
+	if a:cmdbang == ''
+		autocmd asyncmake BufWritePost,BufEnter * AsyncMake!
+	else
+		autocmd! asyncmake
 	endif
 endfunction
