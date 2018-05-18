@@ -59,7 +59,8 @@ endfunction
 " Function to enable/disable build on write
 function! asyncmake#AsyncMakeMonitor(cmdbang) abort
 	if a:cmdbang == ''
-		autocmd asyncmake BufWritePost * AsyncMake!
+		let l:ftvar = "*." . &filetype
+		execute "autocmd asyncmake BufWritePost " l:ftvar . " AsyncMake!"
 	else
 		autocmd! asyncmake
 	endif
