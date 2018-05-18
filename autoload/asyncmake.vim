@@ -1,6 +1,6 @@
 " Vim-AsyncMake
 " AUTHOR: Manas Thakur (manasthakur17@gmail.com)
-" VERSION: 3.0
+" VERSION: 3.1
 " LICENSE: MIT
 
 " Function to build (async for Vim 8+)
