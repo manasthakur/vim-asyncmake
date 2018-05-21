@@ -33,6 +33,7 @@ function! ExitHandlerNoisy(job, exit_status) abort
 	belowright cwindow
 	if a:exit_status == 0
 		echo "No errors!"
+		redrawstatus!
 	endif
 endfunction
 
@@ -41,6 +42,7 @@ function! ExitHandlerSilent(job, exit_status) abort
 	if a:exit_status == 0
 		execute "cclose"
 		echo ""
+		redrawstatus!
 	else
 		redraw!
 	endif
